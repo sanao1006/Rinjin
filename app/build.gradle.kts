@@ -1,9 +1,18 @@
 val compose_ui_version: String by rootProject.extra
+val retrofit_version = "2.9.0"
+val moshi_version = "1.14.0"
+val hilt_version = "2.44"
+val hiltNavigation_version = "1.0.0"
+val coroutines_version = "1.3.9"
+val lifeCycleViewModel_version = "2.5.1"
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.diffplug.spotless")
 }
 
 android {
@@ -26,7 +35,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -62,5 +74,39 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_ui_version")
     debugImplementation("androidx.compose.ui:ui-tooling:$compose_ui_version")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_ui_version")
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$lifeCycleViewModel_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleViewModel_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofit_version")
+
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
+    implementation("androidx.hilt:hilt-navigation-compose:$hiltNavigation_version")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    ratchetFrom("origin/main")
+    java {
+        target("**/*.java")
+        targetExclude("**/*.java")
+        googleJavaFormat("1.16.0")
+    }
+    kotlin {
+        target("**/*.kt")
+        targetExclude("$buildDir/**/*.kt")
+        targetExclude("bin/**/*.kt")
+        ktfmt()
+        ktlint("0.48.2").userData(mapOf("disabled_rules" to "no-wildcard-imports"))
+    }
 
 }

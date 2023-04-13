@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "rinjin"
-include ':app'
+include(":app")

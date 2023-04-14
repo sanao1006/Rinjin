@@ -9,15 +9,17 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
       - name: Change gradlew permissions
         run: chmod +x gradlew
       - run: echo -e "sdk.dir=/path/to/android/sdk \nAPI_TOKEN = ${{ secrets.API_TOKEN }}" >> local.properties
-      - run: ./gradlew --no-daemon spotlessKotlinApply
-      - run: ./gradlew spotlessKotlinCheck
+      - run: ./gradlew spotlessKotlinApply
       - uses: reviewdog/action-suggester@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tool_name: spotless
+      - run: ./gradlew spotlessKotlinCheck
+      - run: ./gradlew lintDebug

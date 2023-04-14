@@ -10,5 +10,5 @@ data class SearchUsersResultDto(
     val incompleteResults: Boolean?,
     val items: List<Item?>?,
     @Json(name = "total_count")
-    val totalCount: Int?
+    val totalCount: Int?,
 )

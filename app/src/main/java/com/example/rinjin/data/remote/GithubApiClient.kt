@@ -8,7 +8,6 @@ interface GithubApiClient {
     suspend fun getUsers(
         @Query("q") location: String,
         @Query("sort") sort: String = "followers",
-        @Query("order") order: String = "desc"
+        @Query("order") order: String = "desc",
     ): SearchUsersResultDto
-
 }

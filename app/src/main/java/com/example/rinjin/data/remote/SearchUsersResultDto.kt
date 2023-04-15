@@ -21,22 +21,23 @@ data class SearchUsersResultDto(
 val retrofit = Retrofit.Builder().baseUrl("https://api.github.com/")
     .addConverterFactory(
         MoshiConverterFactory.create(
-            Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        )
+            Moshi.Builder().add(KotlinJsonAdapterFactory()).build(),
+        ),
     ).build().create(GithubApiClient::class.java)
-suspend fun SearchUsersResultDto.toUser(): List<User>{
-    return items!!.map{
+
+suspend fun getFollowerCount(username: String): Int {
+    val follower = retrofit.getFollower(username = username)
+    return follower.followers ?: 0
+}
+
+suspend fun SearchUsersResultDto.toUser(): List<User> {
+    return items!!.map {
         val followerCount = getFollowerCount(it!!.login!!)
         User(
             name = it!!.login!!,
             url = it!!.htmlUrl ?: "#",
             avatar_url = it!!.avatarUrl ?: "#",
-            follower_val = followerCount
+            follower_val = followerCount,
         )
     }
-}
-
-suspend fun getFollowerCount(username: String): Int{
-    val follower = retrofit.getFollower(username = username)
-    return follower.followers ?: 0
 }

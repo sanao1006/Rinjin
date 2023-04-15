@@ -17,6 +17,6 @@ interface GithubApiClient {
     @GET("users/{username}")
     suspend fun getFollower(
         @Path("username") username: String,
-        @Header("Authorization") token: String = "Bearer ${Constants.API_TOKEN}"
+        @Header("Authorization") token: String = "Bearer ${Constants.API_TOKEN}",
     ): SearchUserDto
 }

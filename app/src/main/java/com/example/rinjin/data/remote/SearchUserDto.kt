@@ -55,5 +55,5 @@ data class SearchUserDto(
     val type: String?,
     @Json(name = "updated_at")
     val updatedAt: String?,
-    val url: String?
+    val url: String?,
 )

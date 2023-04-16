@@ -16,11 +16,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.todofuken"
+    namespace = "com.example.rinjin"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.todofuken"
+        applicationId = "com.example.rinjin"
         minSdk = 26
         targetSdk = 33
         versionCode = 1

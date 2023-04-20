@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColorScheme(
     primary = Purple200,
-    secondary = Teal200
+    secondary = Teal200,
 )
 
 private val LightColorPalette = lightColorScheme(
     primary = Purple500,
-    secondary = Teal200
+    secondary = Teal200,
 
     /* Other default colors to override
     background = Color.White,
@@ -27,13 +27,11 @@ private val LightColorPalette = lightColorScheme(
 
 @Composable
 fun RinjinTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors =  LightColorPalette
-
-
+    val colors = LightColorPalette
     MaterialTheme(
         colorScheme = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

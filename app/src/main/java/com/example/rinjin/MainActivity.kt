@@ -50,6 +50,7 @@ fun Rinjin(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.TopCenter,
     ) {
         OutlinedTextField(
+            modifier = Modifier.padding(top = 16.dp),
             value = "",
             onValueChange = {},
             singleLine = true,

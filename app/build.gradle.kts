@@ -5,6 +5,7 @@ val hilt_version = "2.44"
 val hiltNavigation_version = "1.0.0"
 val coroutines_version = "1.3.9"
 val lifeCycleViewModel_version = "2.5.1"
+val composeMaterial3_version = "1.0.1"
 
 plugins {
     id("com.android.application")
@@ -67,7 +68,6 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.3.1")
     implementation("androidx.compose.ui:ui:$compose_ui_version")
     implementation("androidx.compose.ui:ui-tooling-preview:$compose_ui_version")
-    implementation("androidx.compose.material:material:1.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -87,6 +87,9 @@ dependencies {
 
     implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
     implementation("androidx.hilt:hilt-navigation-compose:$hiltNavigation_version")
+
+    implementation("androidx.compose.material3:material3:1.0.1")
+    implementation("androidx.compose.material3:material3-window-size-class:1.0.1")
 }
 
 // Allow references to generated code

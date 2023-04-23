@@ -25,27 +25,27 @@ class UsersViewModel @Inject constructor(
     private val _locationInputText: MutableStateFlow<String> = MutableStateFlow("")
     val locationInputText: StateFlow<String> = _locationInputText
 
-    fun changeLocation(location: String){
+    fun changeLocation(location: String) {
         _locationInputText.value = location
     }
     fun getUsers(location: String) {
         usersUseCase(location).onEach { result ->
             when (result) {
                 is NetworkResponse.Success -> {
-                    Log.d("state:","success")
+                    Log.d("state:", "success")
                     _usersState.value = UsersState(
                         isLoading = false,
                         users = result.data ?: emptyList(),
                     )
                 }
                 is NetworkResponse.Failure -> {
-                    Log.d("state:","failure")
+                    Log.d("state:", "failure")
                     _usersState.value = UsersState(
                         error = result.error,
                     )
                 }
                 is NetworkResponse.Loading -> {
-                    Log.d("state:","loading")
+                    Log.d("state:", "loading")
                     _usersState.value = UsersState(
                         isLoading = true,
                     )

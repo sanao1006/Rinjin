@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Rinjin(
     modifier: Modifier = Modifier,
-    viewModel: UsersViewModel = hiltViewModel()
+    viewModel: UsersViewModel = hiltViewModel(),
 ) {
     val nowLocation by viewModel.locationInputText.collectAsState()
     val keyboardController = LocalSoftwareKeyboardController.current

@@ -1,10 +1,10 @@
-# これはなに
-都道府県別にフォロワー数が多いGithubユーザーを表示するだけのAndroidアプリ(開発中)
-
-# 使用したライブラリ
+# Rinjin
+This is an Android app that displays Github users with the most followers per `location` on Github(under development).  
+# Libraries used
 - Jetpack Compose
 - Hilt
 - Moshi
 - Retrofit
 - kotlinx.coroutines
 - spotless
+- Coil

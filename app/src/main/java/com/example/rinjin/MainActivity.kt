@@ -19,7 +19,15 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ShapeDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -89,6 +97,7 @@ fun Rinjin(
             if (viewModel.usersState.value.isLoading) {
                 CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
             }
+
             LazyColumn(
                 modifier = Modifier
                     .padding(bottom = 16.dp, top = 16.dp),
@@ -126,7 +135,6 @@ fun Rinjin(
                     }
                 }
             }
-
         }
     }
 }

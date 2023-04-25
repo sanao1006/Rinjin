@@ -19,14 +19,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.ShapeDefaults
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -92,45 +85,48 @@ fun Rinjin(
                     keyboardController?.hide()
                 }),
             )
-            if (nowLocation.isNotEmpty()) {
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(bottom = 16.dp, top = 16.dp),
-                ) {
-                    items(viewModel.usersState.value.users) {
-                        Card(
-                            modifier = Modifier
-                                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
-                                .fillMaxSize(),
-                        ) {
-                            Row(Modifier.padding(16.dp)) {
-                                AsyncImage(
-                                    model = it.avatar_url,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .size(64.dp)
-                                        .clip(CircleShape),
-                                )
-                                Column(
-                                    modifier = Modifier
-                                        .padding(start = 32.dp, top = 8.dp)
-                                        .fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center,
-                                ) {
-                                    Row(modifier = Modifier.align(Alignment.Start)) {
-                                        Icon(
-                                            imageVector = Icons.Default.Person,
-                                            contentDescription = null,
-                                        )
-                                        Text(text = "${it.follower_val}", color = Color.Black)
-                                    }
-                                    Text(text = it.name, modifier = Modifier.padding(top = 2.dp))
+//          Show indicator if loading
+            if (viewModel.usersState.value.isLoading) {
+                CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .padding(bottom = 16.dp, top = 16.dp),
+            ) {
+                items(viewModel.usersState.value.users) {
+                    Card(
+                        modifier = Modifier
+                            .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+                            .fillMaxSize(),
+                    ) {
+                        Row(Modifier.padding(16.dp)) {
+                            AsyncImage(
+                                model = it.avatar_url,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(64.dp)
+                                    .clip(CircleShape),
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .padding(start = 32.dp, top = 8.dp)
+                                    .fillMaxSize(),
+                                verticalArrangement = Arrangement.Center,
+                            ) {
+                                Row(modifier = Modifier.align(Alignment.Start)) {
+                                    Icon(
+                                        imageVector = Icons.Default.Person,
+                                        contentDescription = null,
+                                    )
+                                    Text(text = "${it.follower_val}", color = Color.Black)
                                 }
+                                Text(text = it.name, modifier = Modifier.padding(top = 2.dp))
                             }
                         }
                     }
                 }
             }
+
         }
     }
 }

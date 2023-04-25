@@ -20,6 +20,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -92,7 +93,10 @@ fun Rinjin(
                     keyboardController?.hide()
                 }),
             )
-            if (nowLocation.isNotEmpty()) {
+//          Show indicator if loading
+            if (viewModel.usersState.value.isLoading) {
+                CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
+            } else {
                 LazyColumn(
                     modifier = Modifier
                         .padding(bottom = 16.dp, top = 16.dp),

@@ -96,40 +96,40 @@ fun Rinjin(
 //          Show indicator if loading
             if (viewModel.usersState.value.isLoading) {
                 CircularProgressIndicator(modifier = Modifier.padding(top = 16.dp))
-            }
-
-            LazyColumn(
-                modifier = Modifier
-                    .padding(bottom = 16.dp, top = 16.dp),
-            ) {
-                items(viewModel.usersState.value.users) {
-                    Card(
-                        modifier = Modifier
-                            .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
-                            .fillMaxSize(),
-                    ) {
-                        Row(Modifier.padding(16.dp)) {
-                            AsyncImage(
-                                model = it.avatar_url,
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(64.dp)
-                                    .clip(CircleShape),
-                            )
-                            Column(
-                                modifier = Modifier
-                                    .padding(start = 32.dp, top = 8.dp)
-                                    .fillMaxSize(),
-                                verticalArrangement = Arrangement.Center,
-                            ) {
-                                Row(modifier = Modifier.align(Alignment.Start)) {
-                                    Icon(
-                                        imageVector = Icons.Default.Person,
-                                        contentDescription = null,
-                                    )
-                                    Text(text = "${it.follower_val}", color = Color.Black)
+            } else {
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(bottom = 16.dp, top = 16.dp),
+                ) {
+                    items(viewModel.usersState.value.users) {
+                        Card(
+                            modifier = Modifier
+                                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+                                .fillMaxSize(),
+                        ) {
+                            Row(Modifier.padding(16.dp)) {
+                                AsyncImage(
+                                    model = it.avatar_url,
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(64.dp)
+                                        .clip(CircleShape),
+                                )
+                                Column(
+                                    modifier = Modifier
+                                        .padding(start = 32.dp, top = 8.dp)
+                                        .fillMaxSize(),
+                                    verticalArrangement = Arrangement.Center,
+                                ) {
+                                    Row(modifier = Modifier.align(Alignment.Start)) {
+                                        Icon(
+                                            imageVector = Icons.Default.Person,
+                                            contentDescription = null,
+                                        )
+                                        Text(text = "${it.follower_val}", color = Color.Black)
+                                    }
+                                    Text(text = it.name, modifier = Modifier.padding(top = 2.dp))
                                 }
-                                Text(text = it.name, modifier = Modifier.padding(top = 2.dp))
                             }
                         }
                     }

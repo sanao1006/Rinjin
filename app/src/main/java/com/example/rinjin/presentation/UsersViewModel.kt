@@ -28,6 +28,9 @@ class UsersViewModel @Inject constructor(
     fun changeLocation(location: String) {
         _locationInputText.value = location
     }
+    fun clearLocation() {
+        _locationInputText.value = ""
+    }
     fun getUsers(location: String) {
         usersUseCase(location).onEach { result ->
             when (result) {

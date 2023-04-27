@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -100,6 +101,14 @@ fun Rinjin(
                         keyboardController?.hide()
                     }) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                    }
+                },
+                trailingIcon = {
+                    IconButton(onClick = {
+                        viewModel.clearLocation()
+                        keyboardController?.hide()
+                    }) {
+                        Icon(imageVector = Icons.Default.Close, contentDescription = null)
                     }
                 },
             )
